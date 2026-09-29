@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-panel: var(--c-panel);
+  --color-ink: var(--c-ink);
+  --color-fg: var(--c-fg);
+  --color-muted: var(--c-muted);
+  --color-subtle: var(--c-subtle);
+  --color-gold: var(--c-accent);
+  --color-gold-bright: var(--c-accent-bright);
+  --color-line: var(--c-line);
+  --color-warn: var(--c-warn);
+  --color-ok: var(--c-ok);
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+
+  --font-display: "Instrument Serif", "Times New Roman", serif;
+  --font-sans: "Outfit", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --motion-quick: 150ms;
+  --motion-fast: 250ms;
+}
+
+/* Score — default. Warm paper, ink type, forest accent. Built for long reading. */
+:root,
+html[data-theme="score"] {
+  --c-bg: #f3eee6;
+  --c-surface: #faf7f2;
+  --c-panel: #ebe6dc;
+  --c-ink: #f3eee6;
+  --c-fg: #2a2620;
+  --c-muted: #5e584e;
+  --c-subtle: #8a8376;
+  --c-accent: #2c6b5c;
+  --c-accent-bright: #348072;
+  --c-line: #d4cdc0;
+  --c-warn: #b24a36;
+  --c-ok: #3d7a4c;
+}
+
+/* Night — low-glare charcoal, sage accent. Evening study without gold glare. */
+html[data-theme="night"] {
+  --c-bg: #17191d;
+  --c-surface: #1e2228;
+  --c-panel: #252a32;
+  --c-ink: #17191d;
+  --c-fg: #e8e6e1;
+  --c-muted: #9aa0a8;
+  --c-subtle: #6d747e;
+  --c-accent: #7eb8a8;
+  --c-accent-bright: #96c9bb;
+  --c-line: #343b46;
+  --c-warn: #d0806a;
+  --c-ok: #86b089;
+}
+
+/* Faceplate — LYRA gold on dark. Optional, matches the instrument. */
+html[data-theme="faceplate"] {
+  --c-bg: #0c0b09;
+  --c-surface: #141210;
+  --c-panel: #1b1814;
+  --c-ink: #0c0b09;
+  --c-fg: #f3ead2;
+  --c-muted: #a89878;
+  --c-subtle: #6e6450;
+  --c-accent: #c9a227;
+  --c-accent-bright: #e0bc4a;
+  --c-line: #3a3428;
+  --c-warn: #c45c3a;
+  --c-ok: #7a9a6a;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html {
+    background: var(--c-bg);
+    color: var(--c-fg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--c-bg);
+    color: var(--c-fg);
+    min-height: 100dvh;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--c-accent) 35%, transparent);
+    color: var(--c-fg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
